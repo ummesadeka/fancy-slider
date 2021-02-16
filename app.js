@@ -7,6 +7,15 @@ const sliderContainer = document.getElementById('sliders');
 // selected image 
 let sliders = [];
 
+// search
+document.getElementById("search")
+.addEventListener("keypress", function (event) {
+
+  if(event.key == 'Enter'){
+     document.getElementById("search-btn").click();
+   }
+  });
+
 
 // If this key doesn't work
 // Find the name in the url and go to their website
@@ -15,6 +24,7 @@ const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 
 // show images 
 const showImages = (images) => {
+  toggleSpinner(true);
   imagesArea.style.display = 'block';
   gallery.innerHTML = '';
   // show gallery title
@@ -49,6 +59,15 @@ const selectItem = (event, img) => {
 }
 var timer
 const createSlider = () => {
+  const duration = document.getElementById('duration').value || 1000;
+  if (duration < 0){
+    alert ("Negative Number can't be allowed.");
+    document.getElementById('duration').value = duration * -1;
+  }
+  else if(duration < 100){
+    alert("Enter Millisecond Time.")
+  }
+  else
   // check slider image length
   if (sliders.length < 2) {
     alert('Select at least 2 image.')
@@ -67,8 +86,6 @@ const createSlider = () => {
   document.querySelector('.main').style.display = 'block';
   // hide image aria
   imagesArea.style.display = 'none';
-  const duration = document.getElementById('duration').value || 1000;
-  if (duration > 0){
     sliders.forEach(slide => {
       let item = document.createElement('div')
       item.className = "slider-item";
@@ -77,19 +94,15 @@ const createSlider = () => {
       alt="">`;
       sliderContainer.appendChild(item)
     })
-    }
- 
-  // else{
-  //   alert(something);
-  //   console.log(timer)vn
-  // }
-  
+
   changeSlide(0)
   timer = setInterval(function () {
     slideIndex++;
     changeSlide(slideIndex);
   }, duration);
-}
+ }
+
+
 
 
 // change slider index 
@@ -125,8 +138,19 @@ searchBtn.addEventListener('click', function () {
   getImages(search.value)
   sliders.length = 0;
 })
-// if (duration < 0) {
-//   alert(HI);
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
+// spinner
+toggleSpinner(true);
+const toggleSpinner=(show) => {
+  const spinner = document.getElementById('loading-spinner');
+  if(show){
+    spinner.classList.remove('d-md-none');
+  }
+  else{
+    spinner.classList.add('d-md-none');
+  }
+}
+
+// image-toggle
