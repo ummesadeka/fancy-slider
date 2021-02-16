@@ -13,8 +13,8 @@ document.getElementById("search")
 
   if(event.key == 'Enter'){
      document.getElementById("search-btn").click();
-   }
-  });
+  }
+});
 
 
 // If this key doesn't work
@@ -24,7 +24,6 @@ const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 
 // show images 
 const showImages = (images) => {
-  // toggleSpinner(true);
   imagesArea.style.display = 'block';
   gallery.innerHTML = '';
   // show gallery title
@@ -35,7 +34,7 @@ const showImages = (images) => {
     div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div)
   })
-
+  toggleSpinner(false);
 }
 
 const getImages = (query) => {
@@ -48,15 +47,17 @@ const getImages = (query) => {
 let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
-  element.classList.add('added');
- 
+  element.classList.toggle('added');
   let item = sliders.indexOf(img);
   if (item === -1) {
     sliders.push(img);
   } else {
-    alert('Hey, Already added !')
+    
+    sliders.pop(img);
   }
 }
+
+
 var timer
 const createSlider = () => {
   const duration = document.getElementById('duration').value || 1000;
@@ -67,7 +68,7 @@ const createSlider = () => {
   else if(duration < 100){
     alert("Enter Millisecond Time.")
   }
-  else
+  else{
   // check slider image length
   if (sliders.length < 2) {
     alert('Select at least 2 image.')
@@ -100,9 +101,8 @@ const createSlider = () => {
     slideIndex++;
     changeSlide(slideIndex);
   }, duration);
- }
-
-
+}
+}
 
 
 // change slider index 
@@ -142,15 +142,13 @@ sliderBtn.addEventListener('click', function () {
   createSlider()
 })
 // spinner
-// toggleSpinner(true)
-// const toggleSpinner=(show) => {
-//   const spinner = document.getElementById('loading-spinner');
-//   if(show){
-//     spinner.classList.remove('d-md-none');
-//   }
-//   else{
-//     spinner.classList.add('d-md-none');
-//   }
-// }
 
-// image-toggle
+const toggleSpinner=(show) => {
+  const spinner = document.getElementById('loading-spinner');
+  
+    spinner.classList.toggle('d-none');
+
+}
+  
+
+
