@@ -24,7 +24,7 @@ const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 
 // show images 
 const showImages = (images) => {
-  toggleSpinner(true);
+  // toggleSpinner(true);
   imagesArea.style.display = 'block';
   gallery.innerHTML = '';
   // show gallery title
@@ -142,15 +142,15 @@ sliderBtn.addEventListener('click', function () {
   createSlider()
 })
 // spinner
-toggleSpinner(true);
-const toggleSpinner=(show) => {
-  const spinner = document.getElementById('loading-spinner');
-  if(show){
-    spinner.classList.remove('d-md-none');
-  }
-  else{
-    spinner.classList.add('d-md-none');
-  }
-}
+// toggleSpinner(true)
+// const toggleSpinner=(show) => {
+//   const spinner = document.getElementById('loading-spinner');
+//   if(show){
+//     spinner.classList.remove('d-md-none');
+//   }
+//   else{
+//     spinner.classList.add('d-md-none');
+//   }
+// }
 
 // image-toggle
