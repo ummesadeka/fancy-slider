@@ -13,6 +13,8 @@ document.getElementById("search")
 
   if(event.key == 'Enter'){
      document.getElementById("search-btn").click();
+
+     
   }
 });
 
@@ -24,6 +26,7 @@ const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 
 // show images 
 const showImages = (images) => {
+  toggleSpinner();
   imagesArea.style.display = 'block';
   gallery.innerHTML = '';
   // show gallery title
@@ -34,7 +37,7 @@ const showImages = (images) => {
     div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div)
   })
-  toggleSpinner(false);
+  //toggleSpinner(false);
 }
 
 const getImages = (query) => {
@@ -132,23 +135,32 @@ const changeSlide = (index) => {
 }
 
 searchBtn.addEventListener('click', function () {
+  
   document.querySelector('.main').style.display = 'none';
   clearInterval(timer);
   const search = document.getElementById('search');
   getImages(search.value)
   sliders.length = 0;
+  // toggleSpinner();
+  
+//let spinner = document.getElementById('loading-spinner');
+  //spinner.style.visibility = 'hidden'; //'hidden'/
+
+  //spinner.removeClass('d-none');
 })
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
 // spinner
 
-const toggleSpinner=(show) => {
+const toggleSpinner=() => {
   const spinner = document.getElementById('loading-spinner');
   
     spinner.classList.toggle('d-none');
 
 }
-  
 
+  
+//let spinner = document.getElementById('loading-spinner');
+//spinner.style.visibility = 'hidden'; //'hidden'/
 
