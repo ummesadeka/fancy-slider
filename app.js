@@ -13,8 +13,6 @@ document.getElementById("search")
 
   if(event.key == 'Enter'){
      document.getElementById("search-btn").click();
-
-     
   }
 });
 
@@ -37,7 +35,6 @@ const showImages = (images) => {
     div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div)
   })
-  //toggleSpinner(false);
 }
 
 const getImages = (query) => {
@@ -55,7 +52,6 @@ const selectItem = (event, img) => {
   if (item === -1) {
     sliders.push(img);
   } else {
-    
     sliders.pop(img);
   }
 }
@@ -77,6 +73,8 @@ const createSlider = () => {
     alert('Select at least 2 image.')
     return;
   }
+
+
   // crate slider previous next area
   sliderContainer.innerHTML = '';
   const prevNext = document.createElement('div');
@@ -115,13 +113,11 @@ const changeItem = index => {
 
 // change slide item
 const changeSlide = (index) => {
-
   const items = document.querySelectorAll('.slider-item');
   if (index < 0) {
     slideIndex = items.length - 1
     index = slideIndex;
   };
-
   if (index >= items.length) {
     index = 0;
     slideIndex = 0;
@@ -141,26 +137,16 @@ searchBtn.addEventListener('click', function () {
   const search = document.getElementById('search');
   getImages(search.value)
   sliders.length = 0;
-  // toggleSpinner();
-  
-//let spinner = document.getElementById('loading-spinner');
-  //spinner.style.visibility = 'hidden'; //'hidden'/
-
-  //spinner.removeClass('d-none');
+  toggleSpinner();
 })
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
 // spinner
-
 const toggleSpinner=() => {
   const spinner = document.getElementById('loading-spinner');
   
     spinner.classList.toggle('d-none');
-
 }
 
-  
-//let spinner = document.getElementById('loading-spinner');
-//spinner.style.visibility = 'hidden'; //'hidden'/
 
