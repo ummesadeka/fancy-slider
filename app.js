@@ -55,10 +55,12 @@ const selectItem = (event, img) => {
   if (item === -1) {
     sliders.push(img);
   } else {
-    sliders.pop(img);
+      let index = sliders.indexOf(img);
+      if(index > -1){
+        sliders.splice(index,1);
   }
 }
-
+}
 
 var timer
 const createSlider = () => {
